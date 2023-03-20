@@ -10,7 +10,14 @@ co2 = "#ff843d"  #orange
 co3 = "#334acc"  
 co4 = "#e1e4f2"  #ash
 
+all_values = ""
+text_values = StringVar()
 
+def entering_values(number):
+   global all_values
+
+   all_values = all_values + str(number)
+   text_value.set(all_values)
 
 window = Tk ()
 window.title ("Calculator")
