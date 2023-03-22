@@ -14,7 +14,7 @@ window = Tk ()
 window.title ("Calculator")
 window.geometry ('235x318')
 window.configure(bg=co1)
-window.mainloop ()
+
 
 ttk.Separator(window, orient=HORIZONTAL).grid(row=0, columnspan=1, ipadx=280)
 
@@ -25,9 +25,38 @@ frame_score.grid(row=1, column=0, sticky=NW)
 frame_buttons = Frame(window, width=300, height=340, bg=co1, pady=0, padx=0)
 frame_buttons.grid(row=2, column=0, sticky=NW)
 
+
+
+all_values = ""
+text_value = StringVar()
+
+
+
+def entering_values(number):
+   global all_values
+
+   all_values = all_values + str(number)
+   text_value.set(all_values)
+
+
+def calculate():
+    global all_values
+    result = str(eval(all_values))
+    text_value.set(result)
+    all_values = ""
+
+
+
+
+
+def clear_screen():
+    global all_values
+    all_values = ""
+    text_value.set("")
+
+
 app_screen = Label(frame_score, width=16, height=2, textvariable=text_value, padx=7, anchor="e", bd=0, justify=RIGHT, font=('Ivy 18'), bg=co1, fg=co0)
 app_screen.place(x=0, y=0)
-
 
 
 b_1 = Button(frame_buttons, text="C", command=lambda:clear_screen(), width=11, height=2, bg=co4, fg=co1, font=("Ivy 13 bold"), relief=RAISED, overrelief=RIDGE)
@@ -72,33 +101,4 @@ b_18 = Button(frame_buttons, text="=", command = lambda:calculate(), width=5, he
 b_18.place(x=177, y=208)
 
 
-all_values = ""
-text_value = StringVar()
-
-
-
-def entering_values(number):
-   global all_values
-
-   all_values = all_values + str(number)
-   text_value.set(all_values)
-
-
-def calculate():
-    global all_values
-    result = str(eval(all_values))
-    text_value.set(result)
-    all_values = ""
-
-
-
-
-
-def clear_screen():
-    global all_values
-    all_values = ""
-    text_value.set("")
-
-
-
-
+window.mainloop ()
